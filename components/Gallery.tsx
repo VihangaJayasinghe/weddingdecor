@@ -1,7 +1,7 @@
 "use client";
 
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion, useMotionValue, useSpring, useTransform, useScroll } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
 
 const galleryImages = [
     { id: 1, title: "Garden Romance", category: "Outdoor", image: "/images/gallery1.png" },
@@ -12,17 +12,36 @@ const galleryImages = [
 
 function TiltCard({ image }: { image: typeof galleryImages[0] }) {
     const ref = useRef<HTMLDivElement>(null);
+    const [isMobile, setIsMobile] = useState(false);
 
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        checkMobile();
+        window.addEventListener("resize", checkMobile);
+        return () => window.removeEventListener("resize", checkMobile);
+    }, []);
+
+    // Mouse Tilt Logic
     const x = useMotionValue(0);
     const y = useMotionValue(0);
-
     const mouseXSpring = useSpring(x);
     const mouseYSpring = useSpring(y);
 
-    const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["15deg", "-15deg"]);
-    const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-15deg", "15deg"]);
+    const rotateXMouse = useTransform(mouseYSpring, [-0.5, 0.5], ["15deg", "-15deg"]);
+    const rotateYMouse = useTransform(mouseXSpring, [-0.5, 0.5], ["-15deg", "15deg"]);
+
+    // Scroll Tilt Logic (Mobile)
+    const { scrollYProgress } = useScroll({
+        target: ref,
+        offset: ["start end", "end start"]
+    });
+
+    // Tilt Up (entering) -> Flat (middle) -> Tilt Down (leaving)
+    const rotateXScroll = useTransform(scrollYProgress, [0, 0.5, 1], ["25deg", "0deg", "-25deg"]);
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        if (isMobile) return;
+
         const rect = ref.current?.getBoundingClientRect();
         if (!rect) return;
 
@@ -40,6 +59,7 @@ function TiltCard({ image }: { image: typeof galleryImages[0] }) {
     };
 
     const handleMouseLeave = () => {
+        if (isMobile) return;
         x.set(0);
         y.set(0);
     };
@@ -50,8 +70,8 @@ function TiltCard({ image }: { image: typeof galleryImages[0] }) {
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
             style={{
-                rotateX,
-                rotateY,
+                rotateX: isMobile ? rotateXScroll : rotateXMouse,
+                rotateY: isMobile ? 0 : rotateYMouse, // No horizontal tilt on scroll
                 transformStyle: "preserve-3d",
             }}
             initial={{ opacity: 0, y: 50 }}

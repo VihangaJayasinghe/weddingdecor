@@ -34,14 +34,32 @@ export default function Navbar() {
                 : "bg-gradient-to-b from-black/60 to-transparent py-6"
                 }`}
         >
-            <div className="container mx-auto px-6 flex items-center justify-between">
-                <Link href="/" className={`text-2xl font-serif font-bold tracking-tighter transition-colors ${isScrolled ? "text-slate-900" : "text-white"
-                    }`}>
-                    WeddingDreams
-                </Link>
+            <div className="container mx-auto px-6 flex items-center justify-between relative">
+                {/* Mobile Menu Button - Left */}
+                <div className="md:hidden">
+                    <button
+                        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                        className={`p-2 focus:outline-none transition-colors ${isScrolled ? "text-slate-900" : "text-white"
+                            }`}
+                        aria-label="Toggle menu"
+                    >
+                        {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                    </button>
+                </div>
 
-                {/* Desktop Menu */}
-                <div className="hidden md:flex items-center space-x-8">
+                {/* Centered Logo */}
+                <div className="absolute left-1/2 transform -translate-x-1/2">
+                    <Link href="/" className={`text-2xl font-serif font-bold tracking-tighter transition-all duration-500 ${isScrolled ? "opacity-100 translate-y-0 text-slate-900" : "opacity-0 -translate-y-4 pointer-events-none"
+                        }`}>
+                        WeddingDreams
+                    </Link>
+                </div>
+
+                {/* Empty div for spacing on mobile if needed, or just let justify-between handle it */}
+                <div className="md:hidden w-10"></div>
+
+                {/* Desktop Menu - Right */}
+                <div className="hidden md:flex items-center space-x-8 ml-auto">
                     {navLinks.map((link) => (
                         <Link
                             key={link.name}
@@ -62,16 +80,7 @@ export default function Navbar() {
                     </Link>
                 </div>
 
-                {/* Mobile Menu Button */}
-                <div className="md:hidden">
-                    <button
-                        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                        className={`p-2 focus:outline-none transition-colors ${isScrolled ? "text-slate-900" : "text-white"
-                            }`}
-                    >
-                        {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                    </button>
-                </div>
+
             </div>
 
             {/* Mobile Menu Overlay */}

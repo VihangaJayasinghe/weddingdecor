@@ -28,42 +28,41 @@ export default function Hero() {
             {/* Content */}
             <motion.div
                 style={{ opacity }}
-                className="relative z-10 text-center px-4 max-w-4xl mx-auto"
+                className="relative z-10 text-center px-4 w-full flex flex-col items-center justify-center"
             >
                 <motion.h1
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.2, duration: 1, ease: "easeOut" }}
-                    className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-white mb-8 leading-tight tracking-tight drop-shadow-lg"
+                    className="text-6xl md:text-8xl lg:text-9xl font-serif font-bold text-white mb-4 tracking-tighter"
                 >
-                    Creating Timeless <br />
-                    <span className="font-light italic">Wedding Memories</span>
+                    WeddingDreams
                 </motion.h1>
 
                 <motion.p
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.6, duration: 1 }}
-                    className="text-lg md:text-xl text-white/95 mb-12 max-w-xl mx-auto font-light leading-relaxed drop-shadow-md"
+                    transition={{ delay: 0.5, duration: 1 }}
+                    className="text-sm md:text-base font-medium text-white/80 mb-6 tracking-[0.3em] uppercase"
                 >
-                    We transform spaces into breathtaking experiences with bespoke floral arrangements and luxury decor.
+                    Creating Timeless Memories
                 </motion.p>
 
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.8, duration: 0.8 }}
-                    className="flex flex-col sm:flex-row gap-6 justify-center"
+                    className="flex flex-col sm:flex-row gap-6 justify-center mt-20"
                 >
                     <a
                         href="#contact"
-                        className="px-8 py-4 bg-white text-slate-900 rounded-full font-medium hover:bg-slate-100 transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-1 w-full sm:w-auto"
+                        className="px-10 py-4 bg-white text-black text-xs font-bold uppercase tracking-[0.2em] rounded-full hover:bg-transparent hover:text-white border border-transparent hover:border-white transition-all duration-500 w-full sm:w-auto"
                     >
                         Start Planning
                     </a>
                     <a
                         href="#work"
-                        className="px-8 py-4 bg-black/30 border border-white/40 text-white rounded-full font-medium hover:bg-black/50 transition-all backdrop-blur-md w-full sm:w-auto"
+                        className="px-10 py-4 bg-transparent border border-white text-white text-xs font-bold uppercase tracking-[0.2em] rounded-full hover:bg-white hover:text-black transition-all duration-500 w-full sm:w-auto backdrop-blur-sm"
                     >
                         View Our Work
                     </a>
