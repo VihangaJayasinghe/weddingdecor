@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Oswald, Inter, Playfair_Display } from "next/font/google";
 import ScrollProgress from "@/components/ScrollProgress";
-import Preloader from "@/components/Preloader";
+import OverlayManager from "@/components/OverlayManager";
 import "./globals.css";
 
 const oswald = Oswald({
@@ -37,7 +37,7 @@ export default function RootLayout({
       <body
         className={`${oswald.variable} ${inter.variable} ${playfair.variable} font-sans antialiased bg-[#050505] text-[#f0f0f0] overflow-x-hidden`}
       >
-        <Preloader />
+        <OverlayManager />
         <div className="bg-noise"></div>
         {children}
       </body>
