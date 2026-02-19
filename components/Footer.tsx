@@ -1,43 +1,84 @@
+import Link from "next/link";
+import Image from "next/image";
+
 export default function Footer() {
     return (
-        <footer className="bg-slate-900 text-white py-12 border-t border-slate-800">
+        <footer className="bg-stone-900 text-stone-300 py-16 border-t border-stone-800">
             <div className="container mx-auto px-6">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
                     <div className="col-span-1 md:col-span-2">
-                        <h3 className="text-2xl font-serif font-bold mb-4">WeddingDreams</h3>
-                        <p className="text-slate-400 max-w-sm">
+                        <Link href="/" className="text-3xl font-serif font-bold text-white mb-6 block tracking-tighter">
+                            WeddingDreams
+                        </Link>
+                        <p className="text-stone-400 max-w-sm mb-8 leading-relaxed">
                             Crafting unforgettable moments through exquisite design and decor. Your vision, our masterpiece.
                         </p>
+                        <div className="flex space-x-4">
+                            {/* Social Icons */}
+                            {["Instagram", "Pinterest", "Facebook"].map((social) => (
+                                <a
+                                    key={social}
+                                    href="#"
+                                    className="w-10 h-10 rounded-full bg-stone-800 flex items-center justify-center hover:bg-rose-500 hover:text-white transition-all duration-300"
+                                    aria-label={social}
+                                >
+                                    <span className="text-xs uppercase font-bold tracking-widest">{social[0]}</span>
+                                </a>
+                            ))}
+                        </div>
                     </div>
 
                     <div>
-                        <h4 className="text-lg font-bold mb-4">Quick Links</h4>
-                        <ul className="space-y-2 text-slate-400">
-                            <li><a href="#" className="hover:text-white transition-colors">Home</a></li>
-                            <li><a href="#work" className="hover:text-white transition-colors">Our Work</a></li>
-                            <li><a href="#services" className="hover:text-white transition-colors">Services</a></li>
-                            <li><a href="#contact" className="hover:text-white transition-colors">Contact</a></li>
+                        <h4 className="text-white text-lg font-bold mb-6 font-serif">Quick Links</h4>
+                        <ul className="space-y-4">
+                            {[
+                                { name: "Home", href: "/" },
+                                { name: "Our Work", href: "#work" },
+                                { name: "Services", href: "#services" },
+                                { name: "Contact", href: "#contact" },
+                            ].map((link) => (
+                                <li key={link.name}>
+                                    <Link href={link.href} className="hover:text-rose-500 transition-colors">
+                                        {link.name}
+                                    </Link>
+                                </li>
+                            ))}
                         </ul>
                     </div>
 
                     <div>
-                        <h4 className="text-lg font-bold mb-4">Follow Us</h4>
-                        <div className="flex space-x-4">
-                            <a href="#" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-rose-500 transition-colors">
-                                Instagram
-                            </a>
-                            <a href="#" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-rose-500 transition-colors">
-                                Pinterest
-                            </a>
-                            <a href="#" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-rose-500 transition-colors">
-                                Facebook
-                            </a>
-                        </div>
+                        <h4 className="text-white text-lg font-bold mb-6 font-serif">Contact</h4>
+                        <ul className="space-y-4 text-stone-400">
+                            <li>123 Wedding Lane</li>
+                            <li>Love City, WD 56789</li>
+                            <li>+1 (555) 123-4567</li>
+                            <li>hello@weddingdreams.com</li>
+                        </ul>
                     </div>
                 </div>
 
-                <div className="pt-8 border-t border-slate-800 text-center text-slate-500 text-sm">
-                    <p>&copy; {new Date().getFullYear()} WeddingDreams Decor. All rights reserved.</p>
+                <div className="pt-8 border-t border-stone-800 flex flex-col md:flex-row justify-between items-center gap-6">
+                    <p className="text-sm text-stone-500">
+                        &copy; {new Date().getFullYear()} WeddingDreams Decor. All rights reserved.
+                    </p>
+
+                    {/* Nanopix Branding */}
+                    <div className="flex items-center gap-3 bg-stone-800/50 py-2 px-4 rounded-full border border-stone-700/50 hover:bg-stone-800 transition-colors">
+                        <span className="text-xs text-stone-400 uppercase tracking-wider font-semibold">
+                            Mockup design by
+                        </span>
+                        <div className="flex items-center gap-2">
+                            <div className="relative w-24 h-6">
+                                <Image
+                                    src="/images/nanopix_logo.png"
+                                    alt="Nanopix Web Solutions"
+                                    fill
+                                    className="object-contain opacity-80"
+                                />
+                            </div>
+                            <span className="text-xs font-bold text-white tracking-wide hidden">Nanopix Web Solutions</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </footer>
