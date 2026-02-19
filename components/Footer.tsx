@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { Instagram, Facebook, Twitter } from "lucide-react";
 
 export default function Footer() {
     return (
@@ -14,17 +15,15 @@ export default function Footer() {
                             Crafting unforgettable moments through exquisite design and decor. Your vision, our masterpiece.
                         </p>
                         <div className="flex space-x-4">
-                            {/* Social Icons */}
-                            {["Instagram", "Pinterest", "Facebook"].map((social) => (
-                                <a
-                                    key={social}
-                                    href="#"
-                                    className="w-10 h-10 rounded-full bg-stone-800 flex items-center justify-center hover:bg-rose-500 hover:text-white transition-all duration-300"
-                                    aria-label={social}
-                                >
-                                    <span className="text-xs uppercase font-bold tracking-widest">{social[0]}</span>
-                                </a>
-                            ))}
+                            <a href="#" className="w-10 h-10 rounded-full bg-stone-800 flex items-center justify-center hover:bg-rose-500 hover:text-white transition-all duration-300" aria-label="Instagram">
+                                <Instagram size={18} />
+                            </a>
+                            <a href="#" className="w-10 h-10 rounded-full bg-stone-800 flex items-center justify-center hover:bg-rose-500 hover:text-white transition-all duration-300" aria-label="Pinterest">
+                                <Twitter size={18} />
+                            </a>
+                            <a href="#" className="w-10 h-10 rounded-full bg-stone-800 flex items-center justify-center hover:bg-rose-500 hover:text-white transition-all duration-300" aria-label="Facebook">
+                                <Facebook size={18} />
+                            </a>
                         </div>
                     </div>
 
