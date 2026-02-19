@@ -1,47 +1,50 @@
 import Link from "next/link";
-import Image from "next/image";
-import { Instagram, Facebook, Twitter } from "lucide-react";
+import { Instagram, Facebook, Twitter, ArrowUpRight } from "lucide-react";
 
 export default function Footer() {
     return (
-        <footer className="bg-black py-12 border-t border-[#112240]">
-            <div className="container mx-auto px-6">
-                <div className="flex flex-col md:flex-row justify-between items-center">
-
-                    {/* Branding */}
-                    <div className="mb-6 md:mb-0 text-center md:text-left">
-                        <Link href="/" className="text-2xl font-oswald font-bold tracking-tighter text-[#e6f1ff]">
-                            ZYN<span className="text-[#64ffda]">.</span>
+        <footer className="bg-[#050505] pt-20 pb-10 px-6 border-t border-[#121212] overflow-hidden">
+            <div className="container mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
+                    <div className="md:col-span-2">
+                        <Link href="/" className="text-[4rem] md:text-[8rem] leading-[0.8] font-oswald font-bold tracking-tighter text-[#121212] hover:text-[#ccff00] transition-colors duration-500 block mb-8">
+                            ZYN.AGNCY
                         </Link>
-                        <p className="text-[#8892b0] text-xs font-mono tracking-widest mt-2">
-                            DIGITAL EXPERIENCE AGENCY
+                        <p className="font-mono text-[#444] text-sm md:max-w-md uppercase tracking-wider">
+                            // Based in Neo-Tokyo<br />
+                            // Operating Global.<br />
+                            // Since 2026.
                         </p>
                     </div>
 
-                    {/* Navigation */}
-                    <div className="flex space-x-8 mb-6 md:mb-0">
-                        {["Work", "Services", "About", "Contact"].map((item) => (
-                            <Link
-                                key={item}
-                                href={`#${item.toLowerCase()}`}
-                                className="text-[#8892b0] hover:text-[#64ffda] text-sm uppercase tracking-wider transition-colors"
-                            >
+                    <div className="flex flex-col space-y-4">
+                        <h4 className="font-mono text-[#ccff00] text-xs uppercase tracking-widest mb-4">Sitemap</h4>
+                        {["Work", "Services", "Manifesto", "Contact"].map((item) => (
+                            <Link key={item} href={`#${item.toLowerCase()}`} className="text-[#888] hover:text-[#f0f0f0] text-lg font-bold font-oswald uppercase tracking-wide transition-colors flex items-center group">
+                                <ArrowUpRight size={16} className="mr-2 opacity-0 group-hover:opacity-100 transition-opacity text-[#ccff00]" />
                                 {item}
                             </Link>
                         ))}
                     </div>
 
-                    {/* Socials */}
-                    <div className="flex space-x-4">
-                        <a href="#" className="text-[#8892b0] hover:text-[#64ffda] transition-colors"><Instagram size={20} /></a>
-                        <a href="#" className="text-[#8892b0] hover:text-[#64ffda] transition-colors"><Twitter size={20} /></a>
-                        <a href="#" className="text-[#8892b0] hover:text-[#64ffda] transition-colors"><Facebook size={20} /></a>
+                    <div className="flex flex-col space-y-4">
+                        <h4 className="font-mono text-[#ccff00] text-xs uppercase tracking-widest mb-4">Socials</h4>
+                        {["Instagram", "Twitter", "LinkedIn", "Behance"].map((item) => (
+                            <a key={item} href="#" className="text-[#888] hover:text-[#f0f0f0] text-lg font-bold font-oswald uppercase tracking-wide transition-colors flex items-center group">
+                                <ArrowUpRight size={16} className="mr-2 opacity-0 group-hover:opacity-100 transition-opacity text-[#ccff00]" />
+                                {item}
+                            </a>
+                        ))}
                     </div>
                 </div>
 
-                <div className="mt-12 pt-8 border-t border-[#112240] flex flex-col md:flex-row justify-between items-center text-[#8892b0] text-xs font-mono">
-                    <p>&copy; {new Date().getFullYear()} ZYN AGENCY. ALL RIGHTS RESERVED.</p>
-                    <p>DESIGNED BY NANOPIX</p>
+                <div className="border-t border-[#121212] pt-8 flex flex-col md:flex-row justify-between items-end md:items-center text-[#333] font-mono text-xs uppercase tracking-widest">
+                    <div className="flex flex-col md:flex-row gap-4 md:gap-8 mb-4 md:mb-0">
+                        <span>© 2026 ZYN AGENCY</span>
+                        <span>Privacy Policy</span>
+                        <span>Terms of Chaos</span>
+                    </div>
+                    <p className="text-[#ccff00]/20">ENGINEERED BY NANOPIX</p>
                 </div>
             </div>
         </footer>

@@ -17,7 +17,7 @@ export default function Manifesto() {
             <motion.div style={{ y }} className="container mx-auto">
                 <h2 className="text-[3rem] md:text-[5rem] font-oswald font-bold leading-[0.9] tracking-tighter uppercase">
                     We don't just build websites <br />
-                    We build <span className="underline decoration-4 decoration-black text-[#050505] bg-white px-2">Digital Empires</span>
+                    We build <span className="font-playfair italic font-black text-[#050505] bg-[#f0f0f0] px-4 skew-x-[-10deg] inline-block">Digital Empires</span>
                 </h2>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-20">
