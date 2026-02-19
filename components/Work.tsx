@@ -59,7 +59,7 @@ function Card({ project, index, range, targetScale }: CardProps) {
   const scale = useTransform(scrollYProgress, range, [1, targetScale])
 
   return (
-    <div ref={container} className="h-screen flex items-center justify-center sticky top-0">
+    <div ref={container} className="h-[100dvh] md:h-screen flex items-center justify-center sticky top-0">
       <motion.div
         style={{ scale, backgroundColor: project.color, top: `calc(-5vh + ${index * 25}px)` }}
         className="flex flex-col relative w-[90vw] h-[70vh] rounded-3xl overflow-hidden shadow-2xl border border-[#ffffff]/10"
@@ -77,8 +77,8 @@ function Card({ project, index, range, targetScale }: CardProps) {
             <div className="absolute inset-0 bg-black/50 hover:bg-transparent transition-all duration-500"></div>
 
             <div className="absolute bottom-10 left-10 z-20 pointer-events-none">
-              <p className="font-mono text-[#64ffda] text-sm tracking-widest mb-2">{project.category}</p>
-              <h2 className="font-oswald text-6xl md:text-8xl text-white uppercase">{project.title}</h2>
+              <p className="font-mono text-[#ccff00] text-xs md:text-sm tracking-widest mb-2">{project.category}</p>
+              <h2 className="font-oswald text-4xl md:text-8xl text-white uppercase leading-none mb-2">{project.title}</h2>
               <p className="text-[#a8b2d1] max-w-md mt-4 font-mono text-sm">{project.description}</p>
             </div>
           </div>

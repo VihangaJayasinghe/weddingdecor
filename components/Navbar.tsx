@@ -53,7 +53,7 @@ export default function Navbar() {
                 <div className="md:hidden z-50">
                     <button
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                        className="text-[#64ffda] focus:outline-none"
+                        className="text-[#ccff00] focus:outline-none"
                     >
                         {isMobileMenuOpen ? <X size={30} /> : <Menu size={30} />}
                     </button>
@@ -68,17 +68,17 @@ export default function Navbar() {
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: "100%" }}
                         transition={{ type: "tween", duration: 0.3 }}
-                        className="fixed inset-0 bg-[#112240] z-40 flex flex-col items-center justify-center md:hidden"
+                        className="fixed inset-0 bg-[#050505] z-40 flex flex-col items-center justify-center md:hidden"
                     >
                         <div className="flex flex-col space-y-8 text-center">
                             {navLinks.map((link, index) => (
                                 <Link
                                     key={link.name}
                                     href={link.href}
-                                    className="text-2xl font-oswald text-[#e6f1ff] hover:text-[#64ffda] tracking-wide"
+                                    className="text-4xl font-oswald text-[#f0f0f0] hover:text-[#ccff00] tracking-tighter"
                                     onClick={() => setIsMobileMenuOpen(false)}
                                 >
-                                    <span className="text-[#64ffda] text-base mr-2">0{index + 1}.</span>{link.name}
+                                    <span className="text-[#ccff00] text-lg mr-2">0{index + 1}.</span>{link.name}
                                 </Link>
                             ))}
                         </div>

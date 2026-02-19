@@ -16,10 +16,10 @@ export default function Contact() {
                     transition={{ duration: 0.8 }}
                     className="group relative inline-block"
                 >
-                    <h2 className="text-[12vw] leading-none font-oswald font-bold text-[#f0f0f0] group-hover:text-[#ccff00] transition-colors duration-200 tracking-tighter mix-blend-difference">
+                    <h2 className="text-[18vw] md:text-[12vw] leading-none font-oswald font-bold text-[#f0f0f0] group-hover:text-[#ccff00] transition-colors duration-200 tracking-tighter mix-blend-difference">
                         SAY HELLO
                     </h2>
-                    <ArrowUpRight className="absolute -top-4 -right-12 md:-right-24 text-[#ccff00] w-12 h-12 md:w-32 md:h-32 opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-x-4 group-hover:-translate-y-4" />
+                    <ArrowUpRight className="absolute -top-4 -right-8 md:-right-24 text-[#ccff00] w-12 h-12 md:w-32 md:h-32 opacity-100 md:opacity-0 group-hover:opacity-100 transition-all duration-300 transform md:group-hover:translate-x-4 md:group-hover:-translate-y-4" />
                 </motion.a>
 
                 <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 text-[#888] font-mono text-sm tracking-wider uppercase">

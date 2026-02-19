@@ -27,7 +27,7 @@ export default function Hero() {
                         initial={{ opacity: 0, x: -50 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8, ease: "circOut" }}
-                        className="text-[12vw] md:text-[15vw] leading-[0.85] font-oswald font-bold text-[#f0f0f0] tracking-tighter mix-blend-difference"
+                        className="text-[25vw] md:text-[15vw] leading-[0.8] md:leading-[0.85] font-oswald font-bold text-[#f0f0f0] tracking-tighter mix-blend-difference"
                     >
                         ZYN
                     </motion.h1>
