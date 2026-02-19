@@ -69,6 +69,8 @@ export default function Hero() {
                 </motion.div>
             </motion.div>
 
+
+
             {/* Scroll Indicator */}
             <motion.div
                 style={{ opacity }}
