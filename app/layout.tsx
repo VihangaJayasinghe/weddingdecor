@@ -1,21 +1,23 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
+import { Oswald, Inter } from "next/font/google";
 import ScrollProgress from "@/components/ScrollProgress";
 import "./globals.css";
 
-const playfair = Playfair_Display({
+const oswald = Oswald({
   subsets: ["latin"],
-  variable: "--font-playfair",
+  variable: "--font-oswald",
+  display: "swap",
 });
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Elegant Wedding Decor",
-  description: "Transforming venues into dreamscapes with premium wedding decorations.",
+  title: "Zyn | Future of Design",
+  description: "Futuristic graphic design agency creating immersive digital experiences.",
 };
 
 export default function RootLayout({
@@ -26,9 +28,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth overflow-x-hidden" suppressHydrationWarning>
       <body
-        className={`${playfair.variable} ${inter.variable} font-sans antialiased bg-stone-50 text-stone-900 overflow-x-hidden`}
+        className={`${oswald.variable} ${inter.variable} font-sans antialiased bg-[#020c1b] text-[#e6f1ff] overflow-x-hidden`}
       >
-        <ScrollProgress />
+        <div className="bg-noise"></div>
         {children}
       </body>
     </html>
