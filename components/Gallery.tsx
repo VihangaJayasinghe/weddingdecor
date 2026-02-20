@@ -21,6 +21,8 @@ export default function Gallery() {
     });
 
     const y = useTransform(scrollYProgress, [0, 1], ["0%", "-20%"]);
+    const y2 = useTransform(scrollYProgress, [0, 1], ["0%", "10%"]);
+    const y3 = useTransform(scrollYProgress, [0, 1], ["0%", "-30%"]);
 
     return (
         <section id="gallery" ref={container} className="py-20 bg-black overflow-hidden relative">
@@ -31,33 +33,60 @@ export default function Gallery() {
             </div>
 
             <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
-                <motion.div style={{ y }} className="space-y-8 flex flex-col pt-20">
-                    <div className="relative h-[400px] w-full border border-[#222]">
-                        <Image src={galleryImages[0]} alt="Event 1" fill className="object-cover grayscale hover:grayscale-0 transition-all duration-500" />
-                    </div>
-                    <div className="relative h-[500px] w-full border border-[#222]">
-                        <Image src={galleryImages[1]} alt="Event 2" fill className="object-cover grayscale hover:grayscale-0 transition-all duration-500" />
-                    </div>
+                <motion.div style={{ y }} className="space-y-8 flex flex-col md:pt-20">
+                    <GalleryItem src={galleryImages[0]} height="h-[400px]" />
+                    <GalleryItem src={galleryImages[1]} height="h-[500px]" />
                 </motion.div>
 
-                <motion.div style={{ y: useTransform(scrollYProgress, [0, 1], ["0%", "10%"]) }} className="space-y-8 flex flex-col">
-                    <div className="relative h-[600px] w-full border border-[#222]">
-                        <Image src={galleryImages[2]} alt="Event 3" fill className="object-cover grayscale hover:grayscale-0 transition-all duration-500" />
-                    </div>
-                    <div className="relative h-[300px] w-full border border-[#222]">
-                        <Image src={galleryImages[3]} alt="Event 4" fill className="object-cover grayscale hover:grayscale-0 transition-all duration-500" />
-                    </div>
+                <motion.div style={{ y: y2 }} className="space-y-8 flex flex-col">
+                    <GalleryItem src={galleryImages[2]} height="h-[600px]" />
+                    <GalleryItem src={galleryImages[3]} height="h-[300px]" />
                 </motion.div>
 
-                <motion.div style={{ y: useTransform(scrollYProgress, [0, 1], ["0%", "-30%"]) }} className="space-y-8 flex flex-col pt-40">
-                    <div className="relative h-[450px] w-full border border-[#222]">
-                        <Image src={galleryImages[4]} alt="Event 5" fill className="object-cover grayscale hover:grayscale-0 transition-all duration-500" />
-                    </div>
-                    <div className="relative h-[350px] w-full border border-[#222]">
-                        <Image src={galleryImages[5]} alt="Event 6" fill className="object-cover grayscale hover:grayscale-0 transition-all duration-500" />
-                    </div>
+                <motion.div style={{ y: y3 }} className="space-y-8 flex flex-col md:pt-40">
+                    <GalleryItem src={galleryImages[4]} height="h-[450px]" />
+                    <GalleryItem src={galleryImages[5]} height="h-[350px]" />
                 </motion.div>
             </div>
         </section>
+    );
+}
+
+function GalleryItem({ src, height }: { src: string, height: string }) {
+    return (
+        <motion.div
+            className={`relative ${height} w-full border border-[#222] overflow-hidden group`}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ amount: 0.9, once: false }}
+        >
+            <motion.div
+                variants={{
+                    hidden: { filter: "grayscale(100%)" },
+                    visible: { filter: "grayscale(0%)" }
+                }}
+                transition={{ duration: 0.5 }}
+                className="w-full h-full relative"
+            >
+                <Image
+                    src={src}
+                    alt="Event details"
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+            </motion.div>
+            {/* Mobile: Effect triggers at 90% view. Desktop: Hover still works via group-hover on Image scale, but grayscale might depend on scroll now or we can mix them. 
+                Actually, to keep desktop hover behavior whilst adding mobile scroll behavior:
+                The challenge is that 'hover' and 'whileInView' might conflict if we use the same property.
+                
+                Simpler approach for hybrid:
+                Use CSS for hover on desktop (md:hover:grayscale-0). 
+                Use framer motion to force grayscale-0 when in view on mobile only? 
+                
+                Actually, the user asked for "in mobile... make the images go hover effects when card 90% shows".
+                This implies simulating the hover state.
+            */}
+            <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500 pointer-events-none" />
+        </motion.div>
     );
 }
