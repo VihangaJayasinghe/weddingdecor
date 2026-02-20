@@ -38,7 +38,7 @@ export default function Hero() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.5, duration: 1 }}
-                    className="font-mono text-[#E60000] text-sm md:text-xl tracking-[0.5em] mt-4 md:mt-8 uppercase bg-black/50 inline-block px-4 py-2 backdrop-blur-sm"
+                    className="font-mono text-[#E60000] text-sm md:text-xl tracking-[0.5em] mt-4 md:mt-8 uppercase bg-black px-6 py-3 border border-[#333] inline-block shadow-2xl"
                 >
                     Experience The Unforgettable
                 </motion.p>
