@@ -10,7 +10,7 @@ const events = [
         title: "NEON HORIZON",
         date: "MAR 12, 2026",
         location: "TOKYO DOME",
-        image: "https://images.unsplash.com/photo-1533174072545-e8d4aa97edf9?q=80&w=1200", // Festival Red/Blue
+        image: "https://images.unsplash.com/photo-1533174072545-e8d4aa97edf9?q=80&w=1200", // Festival Crowd (Blue/Red)
         category: "FESTIVAL",
         size: "col-span-1 md:col-span-7"
     },
@@ -19,7 +19,7 @@ const events = [
         title: "CYBER RAVE",
         date: "APR 05, 2026",
         location: "BERLIN",
-        image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1200", // Club Crowd
+        image: "https://images.unsplash.com/photo-1574391884720-385e6e2887c2?q=80&w=1200", // Laser Club (Green/Dark)
         category: "NIGHTLIFE",
         size: "col-span-1 md:col-span-5"
     },
@@ -28,7 +28,7 @@ const events = [
         title: "TECH SUMMIT",
         date: "MAY 20, 2026",
         location: "SF BAY",
-        image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=1200", // Conference Blue
+        image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=1200", // Conference (Blue)
         category: "CORPORATE",
         size: "col-span-1 md:col-span-5"
     },
@@ -37,7 +37,7 @@ const events = [
         title: "VELVET GALA",
         date: "JUN 15, 2026",
         location: "PARIS",
-        image: "https://images.unsplash.com/photo-1514525253440-b393452e8d26?q=80&w=1200", // Stage Purple/Pink
+        image: "https://images.unsplash.com/photo-1519671482538-307eb0c5c4f2?q=80&w=1200", // Gala/Ballroom (Warm/Gold)
         category: "GALA",
         size: "col-span-1 md:col-span-7"
     }
