@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import { Oswald, Inter, Playfair_Display } from "next/font/google";
+import { Oswald, Inter } from "next/font/google";
 import ScrollProgress from "@/components/ScrollProgress";
-import OverlayManager from "@/components/OverlayManager";
 import "./globals.css";
 
 const oswald = Oswald({
@@ -16,15 +15,9 @@ const inter = Inter({
   display: "swap",
 });
 
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-playfair",
-  display: "swap",
-});
-
 export const metadata: Metadata = {
-  title: "Zyn | Future of Design",
-  description: "Futuristic graphic design agency creating immersive digital experiences.",
+  title: "EVENTx | Unforgettable Experiences",
+  description: "Modern event organizing company creating immersive moments.",
 };
 
 export default function RootLayout({
@@ -35,9 +28,8 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth overflow-x-hidden" suppressHydrationWarning>
       <body
-        className={`${oswald.variable} ${inter.variable} ${playfair.variable} font-sans antialiased bg-[#050505] text-[#f0f0f0] overflow-x-hidden`}
+        className={`${oswald.variable} ${inter.variable} font-sans antialiased bg-[#000000] text-[#ffffff] overflow-x-hidden`}
       >
-        <OverlayManager />
         <div className="bg-noise"></div>
         {children}
       </body>

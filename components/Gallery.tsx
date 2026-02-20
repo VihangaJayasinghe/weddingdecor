@@ -1,143 +1,62 @@
 "use client";
 
-import { motion, useMotionValue, useSpring, useTransform, useScroll } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import Image from "next/image";
 
 const galleryImages = [
-    { id: 1, title: "Garden Romance", category: "Outdoor", image: "/images/gallery1.png" },
-    { id: 2, title: "Royal Banquet", category: "Indoor", image: "/images/gallery2.png" },
-    { id: 3, title: "Elegant Dining", category: "Table Setting", image: "/images/gallery3.png" },
-    { id: 4, title: "Floral Fantasy", category: "Decor", image: "/images/gallery4.png" },
+    "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=2070&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1514525253440-b393452e8d26?q=80&w=2070&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?q=80&w=2070&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1533174072545-e8d4aa97edf9?q=80&w=2070&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1459749411177-0473ef71607b?q=80&w=2070&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=2070&auto=format&fit=crop",
 ];
 
-function TiltCard({ image }: { image: typeof galleryImages[0] }) {
-    const ref = useRef<HTMLDivElement>(null);
-    const [isMobile, setIsMobile] = useState(false);
-
-    useEffect(() => {
-        const checkMobile = () => setIsMobile(window.innerWidth < 768);
-        checkMobile();
-        window.addEventListener("resize", checkMobile);
-        return () => window.removeEventListener("resize", checkMobile);
-    }, []);
-
-    // Mouse Tilt Logic
-    const x = useMotionValue(0);
-    const y = useMotionValue(0);
-    const mouseXSpring = useSpring(x);
-    const mouseYSpring = useSpring(y);
-
-    const rotateXMouse = useTransform(mouseYSpring, [-0.5, 0.5], ["15deg", "-15deg"]);
-    const rotateYMouse = useTransform(mouseXSpring, [-0.5, 0.5], ["-15deg", "15deg"]);
-
-    // Scroll Tilt Logic (Mobile)
+export default function Gallery() {
+    const container = useRef(null);
     const { scrollYProgress } = useScroll({
-        target: ref,
+        target: container,
         offset: ["start end", "end start"]
     });
 
-    // Tilt Up (entering) -> Flat (middle) -> Tilt Down (leaving)
-    const rotateXScroll = useTransform(scrollYProgress, [0, 0.5, 1], ["25deg", "0deg", "-25deg"]);
-
-    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-        if (isMobile) return;
-
-        const rect = ref.current?.getBoundingClientRect();
-        if (!rect) return;
-
-        const width = rect.width;
-        const height = rect.height;
-
-        const mouseX = e.clientX - rect.left;
-        const mouseY = e.clientY - rect.top;
-
-        const xPct = mouseX / width - 0.5;
-        const yPct = mouseY / height - 0.5;
-
-        x.set(xPct);
-        y.set(yPct);
-    };
-
-    const handleMouseLeave = () => {
-        if (isMobile) return;
-        x.set(0);
-        y.set(0);
-    };
+    const y = useTransform(scrollYProgress, [0, 1], ["0%", "-20%"]);
 
     return (
-        <motion.div
-            ref={ref}
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
-            style={{
-                rotateX: isMobile ? rotateXScroll : rotateXMouse,
-                rotateY: isMobile ? 0 : rotateYMouse, // No horizontal tilt on scroll
-                transformStyle: "preserve-3d",
-            }}
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.5 }}
-            className="group relative h-72 md:h-96 w-full rounded-xl bg-slate-200 cursor-pointer"
-        >
-            <div
-                style={{
-                    transform: "translateZ(75px)",
-                    transformStyle: "preserve-3d",
-                }}
-                className="absolute inset-4 grid place-content-center rounded-xl bg-white shadow-lg overflow-hidden"
-            >
-                <div
-                    className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
-                    style={{ backgroundImage: `url('${image.image}')` }}
-                />
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-300" />
+        <section id="gallery" ref={container} className="py-20 bg-black overflow-hidden relative">
+            <div className="container mx-auto px-6 mb-12 relative z-10">
+                <h2 className="text-6xl md:text-9xl font-oswald font-bold text-white uppercase tracking-tighter text-right">
+                    Past <span className="text-[#E60000]">Experiences</span>
+                </h2>
             </div>
 
-            <div
-                style={{ transform: "translateZ(100px)" }}
-                className="absolute bottom-10 left-10 z-10"
-            >
-                <h3 className="text-3xl font-serif font-bold text-white mb-1 shadow-black/50 drop-shadow-lg">
-                    {image.title}
-                </h3>
-                <p className="text-white/90 font-medium tracking-wide shadow-black/50 drop-shadow-lg">
-                    {image.category}
-                </p>
-            </div>
-        </motion.div>
-    );
-}
+            <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+                <motion.div style={{ y }} className="space-y-8 flex flex-col pt-20">
+                    <div className="relative h-[400px] w-full border border-[#222]">
+                        <Image src={galleryImages[0]} alt="Event 1" fill className="object-cover grayscale hover:grayscale-0 transition-all duration-500" />
+                    </div>
+                    <div className="relative h-[500px] w-full border border-[#222]">
+                        <Image src={galleryImages[1]} alt="Event 2" fill className="object-cover grayscale hover:grayscale-0 transition-all duration-500" />
+                    </div>
+                </motion.div>
 
-export default function Gallery() {
-    return (
-        <section id="work" className="py-24 bg-stone-100">
-            <div className="container mx-auto px-6">
-                <div className="text-center mb-16">
-                    <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="text-4xl md:text-5xl font-serif font-bold text-slate-900 mb-4"
-                    >
-                        Our Masterpieces
-                    </motion.h2>
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.2 }}
-                        className="text-slate-600 max-w-2xl mx-auto"
-                    >
-                        Hover over the images to experience the depth of our work.
-                    </motion.p>
-                </div>
+                <motion.div style={{ y: useTransform(scrollYProgress, [0, 1], ["0%", "10%"]) }} className="space-y-8 flex flex-col">
+                    <div className="relative h-[600px] w-full border border-[#222]">
+                        <Image src={galleryImages[2]} alt="Event 3" fill className="object-cover grayscale hover:grayscale-0 transition-all duration-500" />
+                    </div>
+                    <div className="relative h-[300px] w-full border border-[#222]">
+                        <Image src={galleryImages[3]} alt="Event 4" fill className="object-cover grayscale hover:grayscale-0 transition-all duration-500" />
+                    </div>
+                </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                    {galleryImages.map((image) => (
-                        <TiltCard key={image.id} image={image} />
-                    ))}
-                </div>
+                <motion.div style={{ y: useTransform(scrollYProgress, [0, 1], ["0%", "-30%"]) }} className="space-y-8 flex flex-col pt-40">
+                    <div className="relative h-[450px] w-full border border-[#222]">
+                        <Image src={galleryImages[4]} alt="Event 5" fill className="object-cover grayscale hover:grayscale-0 transition-all duration-500" />
+                    </div>
+                    <div className="relative h-[350px] w-full border border-[#222]">
+                        <Image src={galleryImages[5]} alt="Event 6" fill className="object-cover grayscale hover:grayscale-0 transition-all duration-500" />
+                    </div>
+                </motion.div>
             </div>
         </section>
     );

@@ -6,10 +6,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
-    { name: "WORK", href: "#work" },
-    { name: "SERVICES", href: "#services" },
-    { name: "ABOUT", href: "#about" },
-    { name: "CONTACT", href: "#contact" },
+    { name: "Events", href: "#events" },
+    { name: "Gallery", href: "#gallery" },
+    { name: "About", href: "#about" },
+    { name: "Contact", href: "#contact" },
 ];
 
 export default function Navbar() {
@@ -17,74 +17,73 @@ export default function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     useEffect(() => {
-        const handleScroll = () => {
-            setIsScrolled(window.scrollY > 50);
-        };
+        const handleScroll = () => setIsScrolled(window.scrollY > 50);
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
     return (
-        <nav
-            className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? "bg-[#020c1b]/90 backdrop-blur-md py-4 shadow-lg border-b border-[#112240]" : "bg-transparent py-6"
+        <motion.nav
+            initial={{ y: -100 }}
+            animate={{ y: 0 }}
+            transition={{ duration: 0.8, ease: "circOut" }}
+            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-black/90 backdrop-blur-md py-4 border-b border-[#E60000]/20" : "bg-transparent py-6"
                 }`}
         >
-            <div className="container mx-auto px-6 flex items-center justify-between">
-                <Link href="/" className={`text-2xl font-oswald font-bold tracking-tighter transition-all duration-500 ${isScrolled ? "opacity-100 translate-y-0 text-[#f0f0f0]" : "opacity-0 -translate-y-4 pointer-events-none"
-                    }`}>
-                    ZYN<span className="text-[#ccff00]">.</span>
+            <div className="container mx-auto px-6 flex justify-between items-center">
+                <Link href="/" className="text-2xl md:text-3xl font-oswald font-bold tracking-tighter text-white z-50 relative">
+                    EVENT<span className="text-[#E60000]">x</span>
                 </Link>
 
-                {/* Desktop Menu */}
+                {/* Desktop Nav */}
                 <div className="hidden md:flex space-x-8">
-                    {["Work", "Manifesto", "Contact"].map((item) => (
+                    {navLinks.map((link) => (
                         <Link
-                            key={item}
-                            href={item === "Manifesto" ? "#manifesto" : `#${item.toLowerCase()}`}
-                            className={`text-sm font-mono uppercase tracking-widest hover:text-[#ccff00] transition-colors ${isScrolled ? "text-[#f0f0f0]" : "text-[#f0f0f0]"
-                                }`}
+                            key={link.name}
+                            href={link.href}
+                            className="text-white/80 hover:text-[#E60000] text-sm uppercase tracking-widest font-mono transition-colors relative group"
                         >
-                            {item}
+                            <span className="relative z-10">{link.name}</span>
+                            <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[#E60000] group-hover:w-full transition-all duration-300" />
                         </Link>
                     ))}
                 </div>
 
-                {/* Mobile Menu Button */}
-                <div className="md:hidden z-50">
-                    <button
-                        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                        className="text-[#ccff00] focus:outline-none"
-                    >
-                        {isMobileMenuOpen ? <X size={30} /> : <Menu size={30} />}
-                    </button>
-                </div>
-            </div>
+                {/* Mobile Toggle */}
+                <button
+                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                    className="md:hidden text-white z-50 focus:outline-none"
+                >
+                    {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+                </button>
 
-            {/* Mobile Menu Overlay */}
-            <AnimatePresence>
-                {isMobileMenuOpen && (
-                    <motion.div
-                        initial={{ opacity: 0, x: "100%" }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: "100%" }}
-                        transition={{ type: "tween", duration: 0.3 }}
-                        className="fixed inset-0 bg-[#050505] z-40 flex flex-col items-center justify-center md:hidden"
-                    >
-                        <div className="flex flex-col space-y-8 text-center">
-                            {navLinks.map((link, index) => (
-                                <Link
-                                    key={link.name}
-                                    href={link.href}
-                                    className="text-4xl font-oswald text-[#f0f0f0] hover:text-[#ccff00] tracking-tighter"
-                                    onClick={() => setIsMobileMenuOpen(false)}
-                                >
-                                    <span className="text-[#ccff00] text-lg mr-2">0{index + 1}.</span>{link.name}
-                                </Link>
-                            ))}
-                        </div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
-        </nav>
+                {/* Mobile Menu */}
+                <AnimatePresence>
+                    {isMobileMenuOpen && (
+                        <motion.div
+                            initial={{ opacity: 0, y: "-100%" }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: "-100%" }}
+                            transition={{ duration: 0.5, ease: "circInOut" }}
+                            className="fixed inset-0 bg-black z-40 flex flex-col items-center justify-center"
+                        >
+                            <div className="flex flex-col space-y-8 text-center">
+                                {navLinks.map((link, index) => (
+                                    <Link
+                                        key={link.name}
+                                        href={link.href}
+                                        onClick={() => setIsMobileMenuOpen(false)}
+                                        className="text-4xl font-oswald text-white hover:text-[#E60000] tracking-tighter uppercase transition-colors"
+                                    >
+                                        <span className="text-[#E60000] text-lg mr-4 font-mono">0{index + 1}</span>
+                                        {link.name}
+                                    </Link>
+                                ))}
+                            </div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+            </div>
+        </motion.nav>
     );
 }

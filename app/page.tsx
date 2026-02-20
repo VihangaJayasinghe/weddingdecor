@@ -1,17 +1,17 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import Work from "@/components/Work";
-import Manifesto from "@/components/Manifesto";
+import UpcomingEvents from "@/components/UpcomingEvents";
+import Gallery from "@/components/Gallery";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#020c1b]">
+    <main className="min-h-screen bg-black">
       <Navbar />
       <Hero />
-      <Work />
-      <Manifesto />
+      <UpcomingEvents />
+      <Gallery />
       <Contact />
       <Footer />
     </main>
