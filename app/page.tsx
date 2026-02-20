@@ -9,7 +9,7 @@ import IntroModal from "@/components/IntroModal";
 export default function Home() {
   return (
     <main className="min-h-screen bg-black">
-      <IntroModal />
+      <IntroModal onComplete={() => { }} />
       <Navbar />
       <Hero />
       <UpcomingEvents />
