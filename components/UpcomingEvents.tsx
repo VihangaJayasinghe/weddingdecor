@@ -10,7 +10,7 @@ const events = [
         title: "NEON HORIZON",
         date: "MAR 12, 2026",
         location: "TOKYO DOME",
-        image: "https://images.unsplash.com/photo-1533174072545-e8d4aa97edf9?q=80&w=1200", // "a crowd of people at a concert" - John Moeses Bauan
+        image: "https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?q=80&w=1200", // Purple/Blue Concert Crowd (Verified Popular)
         category: "FESTIVAL",
         size: "col-span-1 md:col-span-7"
     },
@@ -19,7 +19,7 @@ const events = [
         title: "CYBER RAVE",
         date: "APR 05, 2026",
         location: "BERLIN",
-        image: "https://images.unsplash.com/photo-1598387993441-a364f854c3e1?q=80&w=1200", // Spotlight/Laser - Kaleb Tapp (More reliable than previous)
+        image: "https://images.unsplash.com/photo-1598387993441-a364f854c3e1?q=80&w=1200", // Spotlight/Laser
         category: "NIGHTLIFE",
         size: "col-span-1 md:col-span-5"
     },
@@ -28,7 +28,7 @@ const events = [
         title: "TECH SUMMIT",
         date: "MAY 20, 2026",
         location: "SF BAY",
-        image: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=1200", // Man on stage/TED talk vibe - Teemu Paananen
+        image: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=1200", // Corporate Speaker
         category: "CORPORATE",
         size: "col-span-1 md:col-span-5"
     },
@@ -37,7 +37,7 @@ const events = [
         title: "VELVET GALA",
         date: "JUN 15, 2026",
         location: "PARIS",
-        image: "https://images.unsplash.com/photo-1519671482538-307eb0c5c4f2?q=80&w=1200", // Ball/Gala vibe - Alasdair Elmes
+        image: "https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=1200", // High Fashion/Luxury Model (Reliable for Gala vibe)
         category: "GALA",
         size: "col-span-1 md:col-span-7"
     }
