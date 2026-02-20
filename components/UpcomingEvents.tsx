@@ -10,36 +10,36 @@ const events = [
         title: "NEON HORIZON",
         date: "MAR 12, 2026",
         location: "TOKYO DOME",
-        image: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=2070&auto=format&fit=crop", // Concert crowd
+        image: "https://images.unsplash.com/photo-1533174072545-e8d4aa97edf9?q=80&w=1200", // Festival Red/Blue
         category: "FESTIVAL",
-        size: "col-span-1 md:col-span-2 row-span-2"
+        size: "col-span-1 md:col-span-7"
     },
     {
         id: 2,
         title: "CYBER RAVE",
         date: "APR 05, 2026",
         location: "BERLIN",
-        image: "https://images.unsplash.com/photo-1571266028243-371695039989?q=80&w=1000&auto=format&fit=crop", // Club lighting
+        image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1200", // Club Crowd
         category: "NIGHTLIFE",
-        size: "col-span-1 md:col-span-1 row-span-1"
+        size: "col-span-1 md:col-span-5"
     },
     {
         id: 3,
         title: "TECH SUMMIT",
         date: "MAY 20, 2026",
         location: "SF BAY",
-        image: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=1000&auto=format&fit=crop", // Speaker
+        image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=1200", // Conference Blue
         category: "CORPORATE",
-        size: "col-span-1 md:col-span-1 row-span-1"
+        size: "col-span-1 md:col-span-5"
     },
     {
         id: 4,
         title: "VELVET GALA",
         date: "JUN 15, 2026",
         location: "PARIS",
-        image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=1000&auto=format&fit=crop", // Party
+        image: "https://images.unsplash.com/photo-1514525253440-b393452e8d26?q=80&w=1200", // Stage Purple/Pink
         category: "GALA",
-        size: "col-span-1 md:col-span-2 row-span-1"
+        size: "col-span-1 md:col-span-7"
     }
 ];
 
@@ -52,43 +52,49 @@ export default function UpcomingEvents() {
                 </h2>
             </div>
 
-            <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 grid-rows-none md:grid-rows-2 gap-4 h-auto md:h-[80vh]">
+            <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-6 h-auto">
                 {events.map((event, i) => (
                     <motion.div
                         key={event.id}
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ delay: i * 0.1 }}
-                        className={`group relative overflow-hidden bg-[#111] border border-[#222] hover:border-[#E60000] transition-colors duration-500 ${event.size} min-h-[300px]`}
+                        transition={{ delay: i * 0.1, duration: 0.6 }}
+                        className={`group relative overflow-hidden bg-[#111] border border-[#222] hover:border-[#E60000] transition-colors duration-500 ${event.size} min-h-[400px] md:min-h-[500px] flex flex-col justify-end`}
                     >
-                        <Image
-                            src={event.image}
-                            alt={event.title}
-                            fill
-                            className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-100"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+                        {/* Image Container */}
+                        <div className="absolute inset-0 z-0">
+                            <Image
+                                src={event.image}
+                                alt={event.title}
+                                fill
+                                className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+                        </div>
 
-                        <div className="absolute top-4 right-4 z-20">
-                            <div className="bg-[#E60000] rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">
-                                <ArrowUpRight size={20} className="text-black" />
+                        {/* Hover Icon */}
+                        <div className="absolute top-6 right-6 z-20">
+                            <div className="bg-[#E60000] rounded-full p-3 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 scale-75 group-hover:scale-100 shadow-[0_0_20px_rgba(230,0,0,0.5)]">
+                                <ArrowUpRight size={24} className="text-black" />
                             </div>
                         </div>
 
-                        <div className="absolute bottom-0 left-0 w-full p-6 z-20">
-                            <span className="font-mono text-[#E60000] text-xs uppercase tracking-widest mb-2 block">
+                        {/* Content */}
+                        <div className="relative z-10 p-8 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                            <span className="font-mono text-[#E60000] text-xs uppercase tracking-[0.2em] mb-3 block">
                                 {event.category}
                             </span>
-                            <h3 className="text-3xl md:text-5xl font-oswald font-bold uppercase leading-none mb-4">
+                            <h3 className="text-4xl md:text-6xl font-oswald font-bold uppercase leading-[0.9] mb-6 text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-400 transition-all">
                                 {event.title}
                             </h3>
-                            <div className="flex gap-6 font-mono text-sm text-gray-300">
+
+                            <div className="flex flex-col md:flex-row gap-4 md:gap-8 font-mono text-sm text-gray-300 border-t border-white/20 pt-6 opacity-80 group-hover:opacity-100 transition-opacity">
                                 <span className="flex items-center gap-2">
-                                    <Calendar size={14} className="text-[#E60000]" /> {event.date}
+                                    <Calendar size={16} className="text-[#E60000]" /> {event.date}
                                 </span>
                                 <span className="flex items-center gap-2">
-                                    <MapPin size={14} className="text-[#E60000]" /> {event.location}
+                                    <MapPin size={16} className="text-[#E60000]" /> {event.location}
                                 </span>
                             </div>
                         </div>
