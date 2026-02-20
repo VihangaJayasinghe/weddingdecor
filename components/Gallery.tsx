@@ -72,7 +72,7 @@ function GalleryItem({ src, height }: { src: string, height: string }) {
             className={`relative ${height} w-full border border-[#222] overflow-hidden group`}
             initial="hidden"
             whileInView="visible"
-            viewport={{ amount: 0.5, once: false }} // Changed to 0.5 for easier triggering on mobile
+            viewport={{ amount: 0.9, once: false }} // Changed to 0.5 for easier triggering on mobile
         >
             <motion.div
                 variants={{
