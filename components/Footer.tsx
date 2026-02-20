@@ -34,7 +34,7 @@ export default function Footer() {
                 </div>
 
                 <div className="border-t border-[#222] pt-8 flex flex-col md:flex-row justify-between items-center text-[#666] font-mono text-xs uppercase tracking-widest">
-                    <p>© 2026 EVENTx ENTERTAINMENT.</p>
+                    <p>© 2026 EVENTx ENTERTAINMENTs.</p>
                     <div className="flex gap-8 mt-4 md:mt-0">
                         <a href="#" className="hover:text-white transition-colors">Privacy</a>
                         <a href="#" className="hover:text-white transition-colors">Terms</a>
